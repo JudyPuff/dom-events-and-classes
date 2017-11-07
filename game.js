@@ -43,19 +43,30 @@ function updateCounts () {
     green: 0,
     invisible: 0
   };
-}
 
   // WRITE CODE HERE TO COUNT BLUE, GREEN, AND INVISIBLE DOTS
-function displayTotals () { bindEventListeners(document.getElementsByClassName('totals')[0].children);
-  for (i = 0; i < total.length; i++) {
-    total[1].addEventListener('click');
+  // dots 1-9 are under the div with .board class in our html
+  // From instructions: .children gives an array
+  var dots = document.getElementsByClassName('board')[0].children;
+  for (var i =0; i < dots.length; i++) {
+    if (dots[i].classList.contains('blue')) {
+      totals.blue +=1;
+    }
+    // Same for green
+    if (dots[i].classList.contains('green')){
+      totals.green +=1;
+    }
+    // Same for invisible
+    if (dots[i].classList.contains('invisible')){
+      totals.invisible +=1;
+    }
   }
-
   // Once you've done the counting, this function will update the display
   displayTotals(totals);
 }
 
 function displayTotals (totals) {
+  // eg key is "blue", then we are going to modify "blue-total"
   for (var key in totals) {
     document.getElementById(key + '-total').innerHTML = totals[key];
   }
